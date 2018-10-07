@@ -8,7 +8,7 @@ var logger = require("morgan");
 var cheerio = require("cheerio");
 var Note = require("./models/Note");
 var Article = require("./models/Article");
-var axios = require("axious");
+var axios = require("axios");
 
 
 // Connect to the Mongo DB
@@ -42,7 +42,7 @@ app.listen(port, function() {
 app.get("/", function(req, res) {
 	Article.find({}, null, {sort: {created: -1}}, function(err, data) {
 		if(data.length === 0) {
-			res.render("placeholder", {message: "There's nothing scraped yet. Click \"Scrape For Newest Articles\" "});
+			res.render("placeholder", {message: "There's nothing scraped yet."});
 		}
 		else{
 			res.render("index", {articles: data});
@@ -87,44 +87,10 @@ app.get("/scrape", function(req, res) {
     });
   });
 
-// app.get("/scrape", function(req, res) {
-// 	request("https://www.nytimes.com/", function(error, response, html) {
-// 		var $ = cheerio.load(html);
-// 		var result = {};
-// 		$("div.story-body").each(function(i, element) {
-// 			var link = $(element).find("a").attr("href");
-// 			var title = $(element).find("h2.headline").text().trim();
-// 			var summary = $(element).find("p.summary").text().trim();
-// 			var img = $(element).parent().find("figure.media").find("img").attr("src");
-// 			result.link = link;
-// 			result.title = title;
-// 			if (summary) {
-// 				result.summary = summary;
-// 			};
-// 			if (img) {
-// 				result.img = img;
-// 			}
-// 			else {
-// 				result.img = $(element).find(".wide-thumb").find("img").attr("src");
-// 			};
-// 			var entry = new Article(result);
-// 			Article.find({title: result.title}, function(err, data) {
-// 				if (data.length === 0) {
-// 					entry.save(function(err, data) {
-// 						if (err) throw err;
-// 					});
-// 				}
-// 			});
-// 		});
-// 		console.log("Scrape finished.");
-// 		res.redirect("/");
-// 	});
-// });
-
 app.get("/saved", function(req, res) {
 	Article.find({issaved: true}, null, {sort: {created: -1}}, function(err, data) {
 		if(data.length === 0) {
-			res.render("placeholder", {message: "You have not saved any articles yet. Try to save some delicious news by simply clicking \"Save Article\"!"});
+			res.render("placeholder", {message: "There are no saved articles yet. To save some articles, click \"Save Article\"!"});
 		}
 		else {
 			res.render("saved", {saved: data});

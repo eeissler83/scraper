@@ -2,35 +2,42 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-		<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+    <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<link rel="stylesheet" href="/public/css/style.css" type="text/css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<title>New York Times Scraper</title>
 </head>
 
 <body>
-	<header>
-		<a href="/"><div id="sitename">NYT Scraper</div></a>
-		<a href="/"><button id="all-articles">All Articles</button></a>
-		<a href="/saved"><button id="saved-articles">Saved Articles</button></a>
-		<form action="/scrape" method="GET">
-			<button type="submit" id="refresh-articles">Scrape For Newest Articles</button>
-		</form>
-		<form action="/search" method="POST">
-			<button type="submit" id="search-submit">Submit</button>
-			<input type="text" name="search" placeholder="Search for articles" id="search-input">
-		</form>
-	</header>
-	<img id="cover" src="/assets/images/cover.jpg">
+ <div class="container">
+	
+ <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">New York Times Article Scraper</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/"id="all-articles">All Articles</a></li>
+        <li><a href="/saved" id="saved-articles"> Saved Articles</a></li>
+        <li><form action="/scrape" method="GET">
+            <button type="submit" id="refresh-articles">Scrape For Newest Articles</button></li>
+            </form>
+        </ul>   
+    </div>
+  </nav>
+
+
+
+	<img id="cover" src="/public/images/news.jpg">
 	<div id="container">
 		{{{ body }}}
 	</div>
 	
-	<script src="/assets/javascript/app.js"></script>
+	<script src="/public/javascript/app.js"></script>
 
 	<div id="addnote">
 		<div id="note-displayer">
-			<h2>Note</h2>
-			<h3>Article: <span id="article-title"></span></h3>
+			<h3>Note</h3>
+			<h4>Article: <span id="article-title"></span></h4>
 			<div id="note">
 				<label for="note-title">Title</label><br>
 				<input type="text" placeholder="Title" name="title" id="note-title"><br>
@@ -43,6 +50,7 @@
 	</div>
 	
 	<footer>© Copyright 2018 Eissler Consulting</footer>
-	<script src="/assets/javascript/app.js"></script>
+	<script src="/public/javascript/app.js"></script>
+</div>
 </body>
 </html>
